@@ -1,0 +1,58 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
+const Home = () => (
+  <div className="p-4">
+    <h1 className="text-3xl font-bold mb-4">Welcome to Our Website Development Services</h1>
+    <p className="mb-4">We offer professional website development to bring your vision to life.</p>
+    <Button className="p-2 bg-blue-500 text-white rounded">Get Started</Button>
+  </div>
+);
+
+const ContactInfo = () => (
+  <div className="p-4">
+    <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
+    <p>Email: info@webdev.com</p>
+    <p>Phone: +123 456 7890</p>
+  </div>
+);
+
+const Shop = () => (
+  <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+    {[1, 2, 3].map((item) => (
+      <Card key={item} className="p-4">
+        <CardContent>
+          <h2 className="text-xl font-semibold mb-2">Service {item}</h2>
+          <p className="mb-2">High-quality web development services.</p>
+          <Button className="bg-green-500 text-white p-2 rounded">Buy Now</Button>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+);
+
+const Navbar = () => (
+  <nav className="p-4 bg-gray-800 text-white flex justify-between">
+    <div className="text-xl font-bold">WebDev</div>
+    <div className="flex space-x-4">
+      <Link to="/" className="hover:underline">Home</Link>
+      <Link to="/contact" className="hover:underline">Contact Info</Link>
+      <Link to="/shop" className="hover:underline">Shop</Link>
+    </div>
+  </nav>
+);
+
+const App = () => (
+  <Router>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<ContactInfo />} />
+      <Route path="/shop" element={<Shop />} />
+    </Routes>
+  </Router>
+);
+
+export default App;
